@@ -9,9 +9,16 @@ class User < ApplicationRecord
   has_many :authentications, :dependent => :destroy
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
-      user = User.create!(name: auth_hash["name"], email: auth_hash["extra"]["raw_info"]["email"])
-      user.authentications << (authentication)      
-      return user
+    create! do |u|
+      # user = User.create!(name: auth_hash["extra"]["raw_info"]["name"], email: auth_hash["extra"]["raw_info"]["email"], gender: auth_hash["extra"]["raw_info"]["gender"])
+      # user.authentications << (authentication)     
+      # return user
+      u.name = auth_hash["extra"]["raw_info"]["name"]
+      u.email = auth_hash["extra"]["raw_info"]["email"]
+      u.gender = auth_hash["extra"]["raw_info"]["gender"]
+      u.authentications << (authentication) 
+      u.password = "#{SecureRandom.hex(5)}"
+    end
   end
 
   def fb_token
@@ -19,8 +26,8 @@ class User < ApplicationRecord
     return x.token unless x.nil?
   end
 
-  private
-  def password_optional?
-    true
-  end
+  # private
+  # def password_optional?
+  #   true
+  # end
 end
