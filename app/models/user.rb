@@ -6,7 +6,10 @@ class User < ApplicationRecord
   # enumerables (0: undefined, 1: male, 2: female)
   enum gender: [:undefined, :male, :female]
 
+ 
+
   has_many :authentications, :dependent => :destroy
+  has_many :listings, :dependent => :destroy
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
     create! do |u|
@@ -16,6 +19,11 @@ class User < ApplicationRecord
       u.name = auth_hash["extra"]["raw_info"]["name"]
       u.email = auth_hash["extra"]["raw_info"]["email"]
       u.gender = auth_hash["extra"]["raw_info"]["gender"]
+
+      # x = auth_hash["extra"]["raw_info"]["birthday"]
+      # bday= Date.strptime(x, "%m/%d/%Y")
+      # u.birthday = Date.today.year - bday.year
+
       u.authentications << (authentication) 
       u.password = "#{SecureRandom.hex(5)}"
     end
@@ -31,3 +39,15 @@ class User < ApplicationRecord
   #   true
   # end
 end
+
+
+##### If you want drop down
+# User table
+# ----------
+# STAY = ["Shared", "Private", "Entire"]
+
+# View
+# ----
+#  <div>
+#    <%= form.select :stay_type, User::STAY, prompt: "- Select type of stay" %>
+#  </div>

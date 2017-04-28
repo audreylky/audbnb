@@ -1,0 +1,20 @@
+<h1><%= @listing.title %></h1>
+
+<hr>
+
+<p>Address: <%= @listing.address %><p>
+<p>Address: <%= @listing.home_type %><p>
+<p>Stay: <%= @listing.stay_type %><p>
+<p>No. of Guest: <%= @listing.guest %><p>
+<p>Bedroom: <%= @listing.bedroom %><p>
+<p>Bathroom: <%= @listing.bathroom %><p>
+<p>Price: RM <%= @listing.price %><p>
+
+<h3>Tags</h3>
+<% @listing.tags.each do |tag| %>
+	<p><%= tag[:name] %></p>
+<% end %>
+
+
+<p><%= link_to 'Edit this listing', edit_listing_path(@listing) %></p>
+<p><%= link_to 'Delete', listing_path(@listing), data: {:confirm => 'Are you sure?'}, :method => :delete %></p>

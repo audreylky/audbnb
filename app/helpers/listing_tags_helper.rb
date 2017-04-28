@@ -1,0 +1,2 @@
+module ListingTagsHelper
+end

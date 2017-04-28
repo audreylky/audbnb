@@ -1,2 +1,10 @@
-<h1>Hello World!</h1>
-<%= link_to "Sign in with Facebook", "/auth/facebook" %>
+<h1>Welcome to AudBnB!</h1>
+
+<h2>Check out our listings!</h2>
+
+<% Listing.order('created_at DESC').limit(10).each do |l| %>
+	<div>
+		<h4><%= l.title %></h4>
+		<p>RM <%= l.price %></p>
+	</div>
+<% end %>

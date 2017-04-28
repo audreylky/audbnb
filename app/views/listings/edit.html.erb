@@ -1,0 +1,57 @@
+<h1>Update your listing</h1>
+
+<%= form_for @listing do |form| %>
+
+	<div class="text-field">
+	  <%= form.label :title %>
+	  <%= form.text_field :title, placeholder: "#{@listing.title}" %>
+	</div>
+
+	<div class="text-field">
+	  <%= form.label :address %>
+	  <%= form.text_field :address %>
+	</div>
+
+	<div class="radio_button">
+		<%= form.label :home_type %>
+			Highrise: <%= form.radio_button :home_type, :highrise %>
+	  	Landed: <%= form.radio_button :home_type, :landed %>
+	</div>
+
+	<div class="radio_button">
+		<%= form.label :stay_type %>
+			Shared: <%= form.radio_button :stay_type, 'Shared' %>
+	  	Private: <%= form.radio_button :stay_type, 'Private' %>
+	  	Entire Apartment/ House: <%= form.radio_button :stay_type, 'Entire' %>
+	</div>
+
+	<div class="number_field">
+		<%= form.label :guest %>
+	  <%= form.number_field :guest, min: 1, max: 12, step: 1 %>
+	</div>
+
+	<div class="number_field">
+		<%= form.label :bedroom %>
+	  # <%= form.number_field :bedroom, min: 1, step: 1 %>
+	</div>
+
+	<div class="number_field">
+		<%= form.label :bathroom %>
+	  <%= form.number_field :bathroom, min: 1, step: 1 %>
+	</div>
+
+	<div class="number_field">
+		<%= form.label :price %>
+	  <%= form.number_field :price, min: 50, step: 1 %>
+	</div>
+
+	<div class="check_box_field">
+		<%= form.label :tag %><br>
+		<%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
+	</div>
+
+	<%= form.submit %>
+
+<% end %>
+
+
