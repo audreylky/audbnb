@@ -1,0 +1,5 @@
+<h1>You've created <%= @tag.name %></h1>
+
+<p><%= link_to 'Edit this tag', edit_tag_path(@tag) %></p>
+<p><%= link_to 'Delete', tag_path(@tag), data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+<p><%= link_to 'Back', new_tag_path %>

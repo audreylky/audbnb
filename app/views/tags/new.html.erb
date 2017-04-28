@@ -1,0 +1,19 @@
+<h1>Add a new tag</h1>
+
+<%= form_for @tag do |f| %>
+	<div class="text-field">
+	  <%= f.label :name %>
+	  <%= f.text_field :name %>
+	</div>
+
+	<%= f.submit %>
+<% end %>
+<p><%= link_to 'New Listing', new_listing_path %>
+<h2>Check out our tags!</h2>
+
+<% Tag.limit(10).each do |t| %>
+	<div>
+		<%= link_to "#{t.name}", edit_tag_path(t) %>
+	</div>
+<% end %>
+
