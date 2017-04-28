@@ -1,9 +1,13 @@
 class TagsController < ApplicationController
 	before_action :is_logged_in?, except: [:show ]
+	before_action do
+		redirect_to root_path, warning: "Sorry, you are not authorized for that action!" if !current_user.superadmin? # possible because you used the enum method
+	end
 	before_action :find_tag, only: [:show, :edit, :update, :destroy]
 
 	def new
-		@tag = Tag.new
+
+			@tag = Tag.new
 	end
 
 	def create
@@ -17,6 +21,9 @@ class TagsController < ApplicationController
 	end
 
 	def show
+		if @tag.nil?
+			redirect_to new_tag_path, warning: 'Sadly, this tag does not exist.'
+		end
 	end
 
 	def edit
@@ -33,6 +40,8 @@ class TagsController < ApplicationController
 	end
 
 	private
+	def 
+
 	def find_tag
 		@tag = Tag.find_by_id(params[:id])
 	end
