@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   # enumerables (0: undefined, 1: male, 2: female)
   enum gender: [:undefined, :male, :female]
+  enum role: [:customer, :moderator, :superadmin]
 
  
 
@@ -19,6 +20,7 @@ class User < ApplicationRecord
       u.name = auth_hash["extra"]["raw_info"]["name"]
       u.email = auth_hash["extra"]["raw_info"]["email"]
       u.gender = auth_hash["extra"]["raw_info"]["gender"]
+      u.role = "customer"
 
       # x = auth_hash["extra"]["raw_info"]["birthday"]
       # bday= Date.strptime(x, "%m/%d/%Y")

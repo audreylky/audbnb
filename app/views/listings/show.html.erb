@@ -1,3 +1,4 @@
+
 <h1><%= @listing.title %></h1>
 
 <hr>
@@ -15,6 +16,9 @@
 	<p><%= tag[:name] %></p>
 <% end %>
 
+<% if current_user.id == @listing.user_id %>
+	<p><%= link_to 'Edit this listing', edit_listing_path(@listing) %></p>
+	<p><%= link_to 'Delete', listing_path(@listing), data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+<% end %>
 
-<p><%= link_to 'Edit this listing', edit_listing_path(@listing) %></p>
-<p><%= link_to 'Delete', listing_path(@listing), data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+<p><%= link_to 'Back', root_path %>

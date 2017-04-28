@@ -2,9 +2,12 @@
 
 <h2>Check out our listings!</h2>
 
-<% Listing.order('created_at DESC').limit(10).each do |l| %>
+<!-- <%# Listing.order('created_at DESC').limit(10).each do |l| %> -->
+<% @listings.each do |l| %>
 	<div>
-		<h4><%= l.title %></h4>
+		<h4><%= link_to "#{l.title}", listing_path(l) %></h4>
 		<p>RM <%= l.price %></p>
 	</div>
 <% end %>
+
+<%= will_paginate @listings %>

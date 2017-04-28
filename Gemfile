@@ -63,6 +63,11 @@ gem "figaro"
 gem 'omniauth'
 gem "omniauth-facebook"
 
+# Seed
+gem "faker"
+
+gem 'will_paginate', '~> 3.1.0'
+
 
 
 

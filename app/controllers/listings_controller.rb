@@ -1,13 +1,16 @@
 class ListingsController < ApplicationController
 	before_action :is_logged_in?, except: [:show ]
 	before_action :find_listing, only: [:show, :edit, :update, :destroy]
+	before_action only: [:edit, :update, :destroy] do
+		redirect_to root_path, warning: 'You can\'t edit this property unless you are the owner!' if current_user.id != @listing.user_id
+	end
 
 	def new
 		@listing = Listing.new
 	end
 
 	def create
-		byebug
+		# byebug
 		@listing = Listing.new(listing_params)  # <---- get input via STRONG PARAMS
 		@listing.user_id = current_user.id
 
@@ -25,6 +28,9 @@ class ListingsController < ApplicationController
 	end
 
 	def show
+		if @listing.nil?
+			redirect_to root_path, warning: 'Sadly, this listing does not exist.'
+		end
 	end
 
 	def edit
@@ -33,9 +39,17 @@ class ListingsController < ApplicationController
 	def update
 		@listing.update(listing_params)
 
-		#if 1st == 2nd, remain
-		#if tag relationship doesn't exist, create new
-		#if tag existed, then doesn't exist, destroy
+		#### Updating Tags by destroying and recreating ###
+		# Destroy all
+		eltags = ListingTag.where(listing_id: @listing.id)
+		eltags.destroy_all
+		# recreate
+		new_ltags = params[:listing][:tag_ids]
+		new_ltags.each do |ltag|
+			if !ltag.empty?
+				ListingTag.create(tag_id: ltag.to_i, listing_id: @listing.id)
+			end
+		end
 		redirect_to @listing
 	end
 

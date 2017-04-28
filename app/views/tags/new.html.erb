@@ -8,7 +8,7 @@
 
 	<%= f.submit %>
 <% end %>
-<p><%= link_to 'New Listing', new_listing_path %>
+<p><%= link_to 'New Listing', new_listing_path %></p>
 <h2>Check out our tags!</h2>
 
 <% Tag.limit(10).each do |t| %>
