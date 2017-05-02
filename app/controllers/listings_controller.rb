@@ -10,7 +10,7 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-		# byebug
+		byebug
 		@listing = Listing.new(listing_params)  # <---- get input via STRONG PARAMS
 		@listing.user_id = current_user.id
 
@@ -37,6 +37,7 @@ class ListingsController < ApplicationController
 	end
 
 	def update
+		byebug
 		@listing.update(listing_params)
 
 		#### Updating Tags by destroying and recreating ###
@@ -64,7 +65,7 @@ class ListingsController < ApplicationController
 		end
 
 		def listing_params
-			params.require(:listing).permit(:home_type, :stay_type, :guest, :bedroom, :bathroom, :title, :address, :price, :user_id, :tag_ids)
+			params.require(:listing).permit(:home_type, :stay_type, :guest, :bedroom, :bathroom, :title, :address, :price, :user_id, {tag_ids: []}, {photos: []})
 		end
 
 		def is_logged_in?

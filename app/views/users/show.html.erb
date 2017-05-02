@@ -1,0 +1,13 @@
+<h1><%= @user.name %></h1>
+<% if @user.avatar.url.nil? %>
+	<p>No picture<p>
+<% else %>
+	<%= image_tag @user.avatar.url %>
+<% end %>
+
+<% if current_user.id == @user.id %>
+	<p><%= link_to 'Edit this user', edit_user_path(@user) %></p>
+	<p><%= link_to 'Delete', user_path(@user), data: {:confirm => 'Are you sure?'}, :method => :delete %></p>
+<% end %>
+
+<p><%= link_to 'Back', root_path %>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resource :session, controller: "sessions", only: [:create]
 
 #####################
-
+  resources :users, controller: "users", only: [:show, :edit, :update, :destroy]
   resources :users, controller: "users", only: [:create] do
     resource :password,
       controller: "clearance/passwords",
