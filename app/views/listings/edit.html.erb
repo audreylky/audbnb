@@ -50,6 +50,11 @@
 		<%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
 	</div>
 
+	<div class="file_field">
+		<%= form.label :photos %><br>
+		<%= form.file_field :photos, multiple: true %>
+	</div>
+
 	<%= form.submit %>
 
 <% end %>

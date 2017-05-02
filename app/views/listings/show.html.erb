@@ -2,6 +2,13 @@
 <h1><%= @listing.title %></h1>
 
 <hr>
+<% if @listing.photo.nil? %>
+	<p>No pictures<p>
+<% else %>
+	<% @listing.photos.each do |photo| %>
+		<%= image_tag photo.url %>
+	<% end %>
+<% end %>
 
 <p>Address: <%= @listing.address %><p>
 <p>Address: <%= @listing.home_type %><p>

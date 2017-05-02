@@ -35,8 +35,6 @@
 	  	Entire Apartment/ House: <%= form.radio_button :stay_type, 'Entire' %>
 	</div>
 
-
-
 	<div class="number_field">
 		<%= form.label :guest %>
 	  <%= form.number_field :guest, min: 1, max: 12, step: 1 %>
@@ -60,6 +58,11 @@
 	<div class="check_box_field">
 		<%= form.label :tag %><br>
 		<%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
+	</div>
+
+	<div class="file_field">
+		<%= form.label :photos %><br>
+		<%= form.file_field :photos, multiple: true %>
 	</div>
 
 	<%= form.submit %>
