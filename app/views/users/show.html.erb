@@ -2,7 +2,7 @@
 <% if @user.avatar.url.nil? %>
 	<p>No picture<p>
 <% else %>
-	<%= image_tag @user.avatar.url %>
+	<%= image_tag @user.avatar.thumb.url %>
 <% end %>
 
 <% if current_user.id == @user.id %>
