@@ -16,7 +16,7 @@ module CarouselHelper
     def html
       content = view.safe_join([indicators, slides, controls])
       view.content_tag(:div, content, class: 'carousel slide')
-    end
+    end 
 
     private
 

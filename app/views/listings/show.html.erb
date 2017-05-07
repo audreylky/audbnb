@@ -61,6 +61,18 @@
 	<p><%= tag[:name] %></p>
 <% end %>
 
+
+  <h3>Reserve Now!</h3>
+  <%= render partial: '/listings/form' %>
+
+
+
+<%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
+  <%= date %>
+<% end %>
+
+
+
 <% if current_user.id == @listing.user_id %>
 	<p><%= link_to 'Edit this listing', edit_listing_path(@listing) %></p>
 	<p><%= link_to 'Delete', listing_path(@listing), data: {:confirm => 'Are you sure?'}, :method => :delete %></p>

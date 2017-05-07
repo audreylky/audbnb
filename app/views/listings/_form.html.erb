@@ -1,0 +1,13 @@
+<h1>Reserve Now!</h1>
+
+<%= form_for [@listing, @reservation] do |f| %>
+
+<input type="text" name="daterange" value="01/01/2015 - 01/31/2015" />
+
+	<div class="text-field">
+	  <%= f.label :comments %>
+	  <%= f.text_field :comments %>
+	</div>
+
+	<%= f.submit %>
+<% end %>
