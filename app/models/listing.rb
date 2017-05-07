@@ -4,10 +4,13 @@ class Listing < ApplicationRecord
 	enum stay_type: ['Shared', 'Private', 'Entire']
 
 	belongs_to :user
+	has_one :payment, through: :reservations
+	
 	has_many :listing_tags, dependent: :destroy
 	has_many :tags, through: :listing_tags
+	has_many :reservations, dependent: :destroy
 	serialize :photos, JSON
-	mount_uploader :photos, PhotoUploader
+	mount_uploaders :photos, PhotoUploader
 	
 end
 

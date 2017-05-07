@@ -1,0 +1,8 @@
+<h1>Your reservation!</h1>
+
+<p><%= @reservation.listing.title %>
+<p>Your stay will be from <%= @reservation[:start_date]%> till <%= @reservation[:end_date]%></p>
+<p>It will be <%= @reservation.get_nights %> night</p>
+<p>It is <%= @reservation.listing[:price] %>per night, and the total payment is <%= @reservation.get_price %></p>
+
+<%= link_to "Make Payment", new_listing_reservation_payment_path(@reservation.listing_id, @reservation.id) %>

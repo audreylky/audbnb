@@ -10,7 +10,7 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-		byebug
+		# byebug
 		@listing = Listing.new(listing_params)  # <---- get input via STRONG PARAMS
 		@listing.user_id = current_user.id
 
@@ -31,13 +31,15 @@ class ListingsController < ApplicationController
 		if @listing.nil?
 			redirect_to root_path, warning: 'Sadly, this listing does not exist.'
 		end
+		@listing = Listing.find_by_id(params[:id])
+		@reservation = Reservation.new
 	end
 
 	def edit
 	end
 
 	def update
-		byebug
+		# byebug
 		@listing.update(listing_params)
 
 		#### Updating Tags by destroying and recreating ###

@@ -4,17 +4,22 @@
     <title>Audbnb</title>
     <%= csrf_meta_tags %>
 
+<!-- Include Required Prerequisites -->
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+ 
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+      </head>
 <div class="container">
   <body>
-
-    <div id="ajax-message">
-      
-    </div>
-
-
+    <%# render partial: '/layouts/nav' %>
 
   	<% if signed_in? %>
       Signed in as: <%= current_user.email %>

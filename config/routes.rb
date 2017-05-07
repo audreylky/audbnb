@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # get 'braintree/new'
+  get 'payment' => 'braintree#new'
+  # post 'braintree/checkout'
+
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   # resource :session, controller: "clearance/sessions", only: [:create]
   resource :session, controller: "sessions", only: [:create]
@@ -6,7 +10,7 @@ Rails.application.routes.draw do
 #####################
   resources :users, controller: "users", only: [:show, :edit, :update, :destroy]
   resources :users, controller: "users", only: [:create] do
-    resource :password,
+    resource :password,  #no id
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
   end
@@ -22,9 +26,12 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
 #####################
-  resources :listings
   resources :tags
-  
-
-
+  resources :listings
+  resources :listings, only: [:show] do
+    resources :reservations,
+    only: [:index, :show, :new, :create, :edit, :update, :delete] do
+      resources :payment, controller: 'braintree', only: [:new, :create]
+    end
+  end
 end

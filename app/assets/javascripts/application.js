@@ -11,7 +11,31 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
+
+// $(document).ready(function() {
+// 	$('input[name="daterange"]').daterangepicker();
+// });
+
+$(document).ready(function(){
+	$(function() {
+    $('input[name="daterange"]').daterangepicker({
+    	startDate: new Date()
+    });
+	});
+})
+
+// $('input[name="daterange"]').daterangepicker(
+// {
+//     locale: {
+//       format: 'YYYY-MM-DD'
+//     },
+//     startDate: '2013-01-01',
+//     endDate: '2013-12-31'
+// }, 
+// function(start, end, label) {
+//     alert("A new date range was chosen: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+// });

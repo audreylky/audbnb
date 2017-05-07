@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502050931) do
+ActiveRecord::Schema.define(version: 20170507044036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,26 @@ ActiveRecord::Schema.define(version: 20170502050931) do
     t.datetime "updated_at", null: false
     t.json     "photos"
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "reservation_id"
+    t.integer  "payment_amount"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["reservation_id"], name: "index_payments_on_reservation_id", using: :btree
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "listing_id"
+    t.text     "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.index ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
+    t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
