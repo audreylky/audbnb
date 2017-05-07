@@ -1,7 +1,12 @@
 class Payment < ApplicationRecord
-	belongs_to :reservation
-	belongs_to :listing
+	# 1 layer
+	belongs_to :reservation, inverse_of: :payment
 
-	belongs_to :landlord, class_name: "Listing", foreign_key: "user_id"
-	belongs_to :tenant, class_name: "Reservation", foreign_key: "user_id"
+	# 2 layers
+	has_one :listing, through: :reservation # Bi-directional 1-M relationship. Accompanied --> has_many :payments, through: :reservations
+
+	# 3 layers
+	has_one :host, through: :listing
+	has_one :customer, through: :reservation
+	
 end

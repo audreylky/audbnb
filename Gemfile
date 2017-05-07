@@ -72,6 +72,7 @@ gem "mini_magick"
 gem "fog"
 gem "simple_calendar", "~> 2.0"
 gem 'braintree'
+gem 'sidekiq'
 
 
 

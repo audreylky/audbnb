@@ -8,8 +8,8 @@ class User < ApplicationRecord
   enum role: [:customer, :moderator, :superadmin]
 
   has_many :authentications, :dependent => :destroy
-  has_many :listings, :dependent => :destroy
-  has_many :reservations, :dependent => :destroy
+  has_many :listings, inverse_of: 'host', :dependent => :destroy
+  has_many :reservations, inverse_of: 'customer', :dependent => :destroy
 
   mount_uploader :avatar, AvatarUploader
 

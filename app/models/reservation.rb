@@ -1,7 +1,8 @@
 class Reservation < ApplicationRecord
-	belongs_to :user
-	belongs_to :listing
-	has_one :payment
+	# belongs_to :user --> customer
+	belongs_to :customer, class_name: 'User', foreign_key: 'user_id'
+	belongs_to :listing, inverse_of: :reservations
+	has_one :payment, inverse_of: :reservation
 
 	validate :available?
 
