@@ -12,12 +12,9 @@ class ReservationsController < ApplicationController
 	end
 
 	def create
-		byebug
-		
 		@reservation = Reservation.new(reformat_params(params))
 		@reservation.user_id = current_user.id
 		@reservation.listing_id = params[:listing_id]
-		byebug
 		if @reservation.save
 			flash[:success] = "You have made a reservation!"
 			# redirect_to "/listings/#{params[:listing_id]}/reservations/#{@reservation.id}"

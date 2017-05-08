@@ -3,12 +3,18 @@ class Listing < ApplicationRecord
 	# enum stay_type: [:shared, :private, :entire]
 	enum stay_type: ['Shared', 'Private', 'Entire']
 
-	belongs_to :user
-	has_one :payment, through: :reservations
+	belongs_to :host, class_name: 'User', foreign_key: 'user_id'
+	has_many :reservations, inverse_of: :listing, dependent: :destroy
 	
-	has_many :listing_tags, dependent: :destroy
+
+	has_many :payments, through: :reservations
+
+	# M-M relationship is Bi-directional
 	has_many :tags, through: :listing_tags
-	has_many :reservations, dependent: :destroy
+	has_many :listing_tags, dependent: :destroy
+	
+	
+
 	serialize :photos, JSON
 	mount_uploaders :photos, PhotoUploader
 	
