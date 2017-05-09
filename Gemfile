@@ -75,7 +75,8 @@ gem "fog"
 gem "simple_calendar", "~> 2.0"
 gem 'braintree'
 gem 'sidekiq'
- gem 'unicorn'
+gem 'unicorn'
+gem 'rack-timeout'
 
 group :production do
   gem 'rails_12factor'
