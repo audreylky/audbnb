@@ -8,7 +8,7 @@ class Reservation < ApplicationRecord
 
 	def available?
 		self.errors.add(:start_date, "You can only make reservations from #{Date.today} onwards.") if self.end_date < Date.today
-		byebug
+		# byebug
 		active_res = Reservation.where('listing_id = ? AND (start_date >= ? OR end_date >= ?)', listing.id,  Date.today, Date.today)
 		# active_res = Reservation.where('start_date >= ? OR end_date >= ?', Date.today, Date.today)
 		active_res.each do |booking|

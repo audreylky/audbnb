@@ -70,7 +70,7 @@ class ReservationsController < ApplicationController
 	end
 
 	def reformat_params(params)
-		byebug
+		# byebug
 		dates = params[:daterange].split(" - ")
 		
 		start_date = Date.strptime( dates[0], '%m/%d/%Y')
