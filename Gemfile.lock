@@ -277,6 +277,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.3.2)
     rails (5.0.2)
       actioncable (= 5.0.2)
       actionmailer (= 5.0.2)
@@ -394,6 +395,7 @@ DEPENDENCIES
   omniauth-facebook
   pg (~> 0.18)
   puma (~> 3.0)
+  rack-timeout
   rails (~> 5.0.2)
   rails_12factor
   sass-rails (~> 5.0)
