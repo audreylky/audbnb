@@ -75,6 +75,11 @@ gem "fog"
 gem "simple_calendar", "~> 2.0"
 gem 'braintree'
 gem 'sidekiq'
+ gem 'unicorn'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 
 
