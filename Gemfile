@@ -77,6 +77,7 @@ gem 'braintree'
 gem 'sidekiq'
 gem 'unicorn'
 gem 'rack-timeout'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'rails_12factor'
